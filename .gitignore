@@ -180,7 +180,7 @@ DocProject/Help/html
 publish/
 
 # Publish Web Output
-*.[Pp]ublish.xml
+# *.[Pp]ublish.xml
 *.azurePubxml
 # Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
@@ -207,7 +207,7 @@ PublishScripts/
 *.nuget.targets
 
 # Nuget personal access tokens and Credentials
-nuget.config
+# nuget.config
 
 # Microsoft Azure Build Output
 csx/

@@ -1,0 +1,28 @@
+﻿<Project>
+  <PropertyGroup>
+    <Company>Vlad EDU</Company>
+    <Product>ID Service</Product>
+    <Authors>Dream Team</Authors>
+    <Version>0.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>../../Analyzers.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <PublishDocumentationFile>true</PublishDocumentationFile>
+    <NoWarn>1573;1591;1712;1701;1702;CA1014</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'!='Debug'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+</Project>
