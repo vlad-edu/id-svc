@@ -36,4 +36,10 @@
     <InternalsVisibleTo Include="IdService.App.Test" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Content Remove="ClientApp\tsconfig.json" />
+    <None Remove="ClientApp\webpack.config.js" />
+  </ItemGroup>
+
 </Project>

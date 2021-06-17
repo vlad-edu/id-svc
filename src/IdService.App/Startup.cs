@@ -3,7 +3,6 @@ using IdService.Core.Constants;
 using IdService.Core.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,10 +63,6 @@ namespace IdService.App
                 endpoints.MapHealthChecks(HostingConstants.HealthCheckEndpoint).RequireHost($"*:{_managementPort}");
                 endpoints.MapMetrics(HostingConstants.MetricsEndpoint).RequireHost($"*:{_managementPort}");
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("ID Service");
-                });
             });
         }
     }

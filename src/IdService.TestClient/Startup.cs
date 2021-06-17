@@ -66,7 +66,7 @@ namespace IdService.TestClient
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("ID Service");
+                    await context.Response.WriteAsync("ID Service test client");
                 });
             });
         }

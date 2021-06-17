@@ -1,0 +1,10 @@
+{
+    "editor.wordWrap": "off",
+    "files.exclude": {
+			"**/node_modules": {},
+			"typings": {},
+			"**/*.js": {
+				"when": "$(basename).ts"
+			}
+	}
+}
