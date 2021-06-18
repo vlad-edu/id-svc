@@ -8,7 +8,7 @@ namespace IdService.App.ViewModels.Account
     {
         [Required]
         [DisplayName("Username")]
-        public string? Email { get; set; }
+        public string? Username { get; set; }
 
         [Required]
         [DisplayName("Password")]

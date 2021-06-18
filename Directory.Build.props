@@ -13,6 +13,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <PublishDocumentationFile>true</PublishDocumentationFile>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <NoWarn>1573;1591;1712;1701;1702;CA1014</NoWarn>
   </PropertyGroup>
 
