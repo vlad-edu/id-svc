@@ -7,7 +7,7 @@
             "group": "build",
             "problemMatcher": [],
             "label": "npm: build:dev",
-            "detail": "webpack --mode development"
+            "detail": "webpack --config webpack.dev.js"
         },
         {
             "type": "npm",
@@ -15,7 +15,7 @@
             "group": "build",
             "problemMatcher": [],
             "label": "npm: build:prod",
-            "detail": "webpack --mode productiob"
+            "detail": "webpack --config webpack.prod.js"
            
         }
     ]
