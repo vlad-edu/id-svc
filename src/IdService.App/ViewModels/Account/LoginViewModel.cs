@@ -12,6 +12,8 @@ namespace IdService.App.ViewModels.Account
 
         [Required]
         [DisplayName("Password")]
+        [MinLength(8, ErrorMessage = "Password is too short")]
+        [MaxLength(48, ErrorMessage = "Password is too long")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
@@ -20,5 +22,6 @@ namespace IdService.App.ViewModels.Account
 
         [HiddenInput]
         public string? ReturnUrl { get; set; }
+
     }
 }
