@@ -2,11 +2,14 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
-    <TargetDatabaseName>id-service</TargetDatabaseName>
-    <DeployScriptFileName>id-service.sql</DeployScriptFileName>
+    <TargetDatabaseName>id-svc</TargetDatabaseName>
+    <DeployScriptFileName>id-svc.sql</DeployScriptFileName>
     <BlockWhenDriftDetected>False</BlockWhenDriftDetected>
-    <RegisterDataTierApplication>True</RegisterDataTierApplication>
+    <RegisterDataTierApplication>False</RegisterDataTierApplication>
     <TargetConnectionString>Data Source=(local);Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False</TargetConnectionString>
     <ProfileVersionNumber>1</ProfileVersionNumber>
+    <BlockOnPossibleDataLoss>False</BlockOnPossibleDataLoss>
+    <DropObjectsNotInSource>True</DropObjectsNotInSource>
+    <ScriptDatabaseOptions>True</ScriptDatabaseOptions>
   </PropertyGroup>
 </Project>

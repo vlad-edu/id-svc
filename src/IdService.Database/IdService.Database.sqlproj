@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>IdService.Database</RootNamespace>
     <AssemblyName>IdService.Database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -25,6 +25,8 @@
     <GenerateCreateScript>True</GenerateCreateScript>
     <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
     <Recovery>SIMPLE</Recovery>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -48,7 +50,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <SqlTargetName>id-service</SqlTargetName>
+    <SqlTargetName>id-svc</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -60,11 +62,31 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Security\" />
+    <Folder Include="Tables" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />
+    <None Include="Scripts\PostDeployment\dbo.__EFMigrationsHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\msi.RoleClaims.sql" />
+    <Build Include="Tables\msi.Roles.sql" />
+    <Build Include="Tables\msi.UserClaims.sql" />
+    <Build Include="Tables\msi.UserLogins.sql" />
+    <Build Include="Tables\msi.UserRoles.sql" />
+    <Build Include="Tables\msi.Users.sql" />
+    <Build Include="Tables\msi.UserTokens.sql" />
+    <Build Include="Tables\dbo.__EFMigrationsHistory.sql" />
+    <Build Include="Security\Schemas\msi.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\PostDeployment.sql" />
   </ItemGroup>
 </Project>

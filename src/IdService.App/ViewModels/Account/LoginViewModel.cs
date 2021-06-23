@@ -22,6 +22,5 @@ namespace IdService.App.ViewModels.Account
 
         [HiddenInput]
         public string? ReturnUrl { get; set; }
-
     }
 }

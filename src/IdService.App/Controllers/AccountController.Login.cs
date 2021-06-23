@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography;
+using System.Threading.Tasks;
 using IdService.App.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,11 +23,19 @@ namespace IdService.App.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromForm] LoginViewModel model)
+        public async Task<IActionResult> Login([FromForm] LoginViewModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
-            if (ModelState.IsValid) return RedirectToAction("Login");
-            ModelState.AddModelError(string.Empty, "Oops! We don't see a user with that login info. Please try again.");
+            if (!ModelState.IsValid)
+            {
+                ModelState.TryAddModelError(string.Empty, "Oops!");
+                return View(model);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, true);
+            if (result.Succeeded) return RedirectToAction("Login");
+
+            ModelState.TryAddModelError(string.Empty, result.ToString());
             return View(model);
         }
     }

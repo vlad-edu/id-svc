@@ -1,6 +1,8 @@
 using IdService.App.Infrastructure.Extensions;
 using IdService.Core.Constants;
 using IdService.Core.Exceptions;
+using IdService.Data.Extensions;
+using IdService.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -23,12 +25,20 @@ namespace IdService.App
         {
             _configuration = configuration;
             _env = env;
-            _managementPort = _configuration[HostingConstants.ManagementPortConfigurationKey] ?? throw new InvalidConfigurationException("Invalid configuration.", HostingConstants.ManagementPortConfigurationKey);
+            _managementPort = _configuration[HostingConstants.ManagementPortConfigurationKey]
+                              ?? throw new InvalidConfigurationException("Invalid configuration.", HostingConstants.ManagementPortConfigurationKey);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            if (_env.IsDevelopment()) services.AddApplicationInsightsTelemetry();
+            services.AddConfiguredDbContext(_configuration);
+            services.AddConfiguredIdentity(_configuration);
+
+            if (_env.IsDevelopment())
+            {
+                services.AddApplicationInsightsTelemetry();
+                services.AddDatabaseDeveloperPageExceptionFilter();
+            }
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {
@@ -56,8 +66,11 @@ namespace IdService.App
             // app.UseStatusCodePagesWithReExecute(HostingConstants.ErrorEndpoint, "?status={0}");
             app.UseStaticFiles();
             app.UseDiagnosticLogging();
+
             app.UseRouting();
             app.UseHttpMetrics();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks(HostingConstants.HealthCheckEndpoint).RequireHost($"*:{_managementPort}");
