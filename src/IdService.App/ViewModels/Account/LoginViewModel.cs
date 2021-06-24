@@ -8,6 +8,7 @@ namespace IdService.App.ViewModels.Account
     {
         [Required]
         [DisplayName("Username")]
+
         public string? Username { get; set; }
 
         [Required]
