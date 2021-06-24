@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AspNetCore.ReCaptcha;
 using IdService.App.ViewModels.Account;
 using IdService.Data.Model.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -16,13 +17,14 @@ namespace IdService.App.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
-            var model = new RegisterViewModel();
+            var model = new RegisterModel();
             return View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        [ValidateReCaptcha]
+        public async Task<IActionResult> Register(RegisterModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (!ModelState.IsValid) return View(model);

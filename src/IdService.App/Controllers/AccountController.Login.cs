@@ -15,7 +15,7 @@ namespace IdService.App.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            var model = new LoginViewModel
+            var model = new LoginModel
             {
                 ReturnUrl = "http://google.com/",
             };
@@ -23,7 +23,7 @@ namespace IdService.App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm] LoginViewModel model)
+        public async Task<IActionResult> Login([FromForm] LoginModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (!ModelState.IsValid)
@@ -33,7 +33,10 @@ namespace IdService.App.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, true);
-            if (result.Succeeded) return RedirectToAction("Login");
+            if (result.Succeeded)
+            {
+                return Redirect(model.ReturnUrl ?? "/");
+            }
 
             ModelState.TryAddModelError(string.Empty, result.ToString());
             return View(model);

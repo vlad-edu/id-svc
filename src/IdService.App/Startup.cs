@@ -1,3 +1,4 @@
+using AspNetCore.ReCaptcha;
 using IdService.App.Infrastructure.Extensions;
 using IdService.Core.Constants;
 using IdService.Core.Exceptions;
@@ -49,6 +50,8 @@ namespace IdService.App
                 options.KnownProxies.Clear();
             });
 
+            services.AddReCaptcha(_configuration.GetSection(ConfigurationKeys.ReCaptcha));
+            services.AddHttpClient();
             services.AddHealthChecks();
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();

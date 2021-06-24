@@ -1,104 +1,42 @@
-﻿@model IdService.App.ViewModels.Account.LoginViewModel
-<header>
-    <style>
-        #intro {
-            background-image: url("/img/background.jpg");
-            height: 100vh;
-        }
-
-        @@media (min-width: 992px) {
-            #intro {
-                margin-top: -58.59px;
-            }
-        }
-
-        .navbar .nav-link {
-            color: #000000 !important;
-            
-        }
-
-    </style>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
-        <div class="container-fluid">
-            <!-- Navbar brand -->
-            <a class="nav-link h5">
-                <strong>Links:</strong>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarExample01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">Registration</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">About us</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">Help</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Background image -->
-    <div id="intro">
-        <div class="d-flex align-items-center h-100">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-md-8">
-                        <form method="post" asp-action="Login" asp-antiforgery="true" class="bg-white p-5">
-                            <div asp-validation-summary="ModelOnly"></div>
-                            <!-- Email input -->
-                            <div class="mb-4">
-                                <input asp-for="Username" class="form-control" />
-                                <label class="form-label" asp-for="Username"></label>
-                                <span asp-validation-for="Username"></span>
-                            </div>
-
-                            <!-- Password input -->
-                            <div class="mb-4">
-                                <input class="form-control" asp-for="Password" />
-                                <label class="form-label" asp-for="Password"></label>
-                                <span asp-validation-for="Password"></span>
-                            </div>
-
-                            <!-- 2 column grid layout for inline styling -->
-                            <div class="row mb-4">
-                                <div class="col d-flex justify-content-center">
-                                    <!-- Checkbox -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" asp-for="RememberLogin" />
-                                        <label class="form-check-label" asp-for="RememberLogin">
-                                            Remember me
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col text-center">
-                                    <!-- Simple link -->
-                                    <a href="#">Forgot password?</a>
-                                </div>
-                            </div>
-                            <input asp-for="ReturnUrl" />
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
-                    </div>
+﻿@model IdService.App.ViewModels.Account.LoginModel
+@{ ViewData["Title"] = "Sign in"; }
+@section Head {
+    @await Html.PartialAsync("_FlexBodyStylePartial")
+}
+<div class="container">
+    <main>
+        <form class="form-center" method="post" asp-action="Login">
+            <div class="px-3 py-5 border-sm rounded">
+                <div class="text-center">
+                    <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Background image -->
-</header>
-    <!--Main Navigation-->
-    <!--Footer-->
-    <footer class="bg-light text-lg-start">
 
-        <!-- Copyright -->
-        <div class="text-center p-3">
-            © 2021 Website
+                <div class="mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Username"></label>
+                    <input class="form-control" asp-for="Username" />
+                    <span asp-validation-for="Username"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label float-start" asp-for="Password"></label>
+                    <a href="@Url.Action("Register")" class="float-end text-decoration-none">Forgot password?</a>
+                    <input class="form-control" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" asp-for="RememberLogin">
+                    <label class="form-check-label" asp-for="RememberLogin"></label>
+                </div>
+
+                <button type="submit" class="w-100 btn btn-primary">
+                    @ViewData["Title"]
+                </button>
             </div>
-        <!-- Copyright -->
-    </footer>
-    <!--Footer-->
+            <input type="hidden" asp-for="ReturnUrl"/>
+        </form>
+    </main>
+</div>

@@ -1,120 +1,51 @@
-﻿@model IdService.App.ViewModels.Account.RegisterViewModel
-<header>
-    <style>
-        
-        #intro {
-            background-image: url("/img/background.jpg");
-            height: 100vh;
-        }
-
-        @@media (min-width: 992px) {
-            #intro {
-                margin-top: -58.59px;
-            }
-        }
-        
-        .navbar .nav-link {
-            color: #000000 !important;
-            
-        }
-
-        * {box-sizing: border-box}
-
-        /* Add padding to containers */
-        .container {
-            padding: 16px;
-        }
-        /* Overwrite default styles of hr */
-        hr {
-            border: 1px solid #f1f1f1;
-            margin-bottom: 25px;
-        }
-        
-        a {
-            color: dodgerblue;
-        }
-
-        .signin {
-            background-color: #f1f1f1;
-            text-align: center;
-        }
-        
-    </style>
-    
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
-        <div class="container-fluid">
-            <!-- Navbar brand -->
-            <a class="nav-link h5">
-                <strong>Links:</strong>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarExample01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">Login page</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">About us</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link h5" aria-current="page" href="#intro">Help</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="intro">
-        <div class="d-flex align-items-center h-100">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-md-8">
-                        <form method="post" asp-action="Register" asp-antiforgery="true" class="bg-white p-5">
-                            <div asp-validation-summary="ModelOnly"></div>
-                            <div class="container">
-                                <h1>Registration</h1>
-                                <p>Please fill in this form to create an account.</p>
-                                <hr>
-                                <div class="mb-4">
-                                    <label class="form-label" asp-for="Username"></label>
-                                    <input asp-for="Username" class="form-control" />
-                                    <span asp-validation-for="Username"></span>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label" asp-for="Email"></label>
-                                    <input asp-for="Email" class="form-control" />
-                                    <span asp-validation-for="Email"></span>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label" asp-for="Password"></label>
-                                    <input asp-for="Password" class="form-control" />
-                                    <span asp-validation-for="Password"></span>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label" asp-for="ConfirmPassword"></label>
-                                    <input asp-for="ConfirmPassword" class="form-control" />
-                                    <span asp-validation-for="ConfirmPassword"></span>
-                                </div>
-                                <div class="mb-4">
-                                    <button type="submit" class="btn btn-primary">Register</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+﻿@model IdService.App.ViewModels.Account.RegisterModel
+@{ ViewData["Title"] = "Sign up"; }
+@section Head {
+    @await Html.PartialAsync("_FlexBodyStylePartial")
+}
+<div class="container">
+    <main>
+        <form class="form-center" method="post" asp-action="Register">
+            <div class="px-3 py-5 border-sm rounded">
+                <div class="text-center">
+                    <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
                 </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!--Footer-->
-<footer class="bg-light text-lg-start">
 
-    <!-- Copyright -->
-    <div class="container signin">
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
-    </div>
-    <!-- Copyright -->
-</footer>
-<!--Footer-->
+                <div class="mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Username"></label>
+                    <input class="form-control" asp-for="Username" />
+                    <span asp-validation-for="Username"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Email"></label>
+                    <input class="form-control" asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Password"></label>
+                    <input class="form-control" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="ConfirmPassword"></label>
+                    <input class="form-control" asp-for="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center">
+                    <recaptcha />
+                </div>
+
+                <button type="submit" class="w-100 btn btn-primary">
+                    Create account
+                </button>
+            </div>
+        </form>
+    </main>
+</div>

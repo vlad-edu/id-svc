@@ -4,7 +4,7 @@ using IdService.Core.Constants;
 
 namespace IdService.App.ViewModels.Account
 {
-    public sealed class RegisterViewModel
+    public sealed class RegisterModel
     {
         [Required(ErrorMessage = "Please enter Username.")]
         [Display(Name = "Username")]

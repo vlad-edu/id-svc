@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IdService.App.Controllers
 {
-    public partial class HomeController : Controller
+    public sealed class HomeController : Controller
     {
         [HttpGet]
-        [AllowAnonymous]
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();

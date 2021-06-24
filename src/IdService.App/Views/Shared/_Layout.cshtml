@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ID Service</title>
+    <title>@ViewData["Title"]</title>
     <meta name="app-version" content="@(Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion)" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/site.webmanifest">
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
@@ -16,9 +20,7 @@
     @await RenderSectionAsync("Head", false)
 </head>
 <body>
-    <main>
-        @RenderBody()
-    </main>
+    @RenderBody()
     <script src="~/lib/jquery.min.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/lib/jquery.validate.min.js" type="text/javascript" asp-append-version="true"></script>
     <script src="~/lib/jquery.validate.unobtrusive.min.js" type="text/javascript" asp-append-version="true"></script>
