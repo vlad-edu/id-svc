@@ -11,7 +11,6 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "account/login",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
         "DOTNET_MANAGEMENTPORT": "5001"
