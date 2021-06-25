@@ -13,7 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_MANAGEMENTPORT": "5001"
+        "DOTNET_MANAGEMENTPORT": "44384"
       }
     },
     "IdService.App": {

@@ -2,6 +2,7 @@ using AspNetCore.ReCaptcha;
 using IdService.App.Infrastructure.Extensions;
 using IdService.Core.Constants;
 using IdService.Core.Exceptions;
+using IdService.Data;
 using IdService.Data.Extensions;
 using IdService.Services.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -52,7 +53,8 @@ namespace IdService.App
 
             services.AddReCaptcha(_configuration.GetSection(ConfigurationKeys.ReCaptcha));
             services.AddHttpClient();
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddDbContextCheck<AppDbContext>();
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
         }
@@ -65,8 +67,13 @@ namespace IdService.App
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(HostingConstants.ErrorEndpoint);
+                app.UseHsts();
+            }
 
-            // app.UseStatusCodePagesWithReExecute(HostingConstants.ErrorEndpoint, "?status={0}");
+            app.UseStatusCodePagesWithReExecute(HostingConstants.ErrorEndpoint, "?status={0}");
             app.UseStaticFiles();
             app.UseDiagnosticLogging();
 

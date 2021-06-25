@@ -6,7 +6,7 @@ namespace IdService.App.Controllers
     public sealed class HomeController : Controller
     {
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
             return View();

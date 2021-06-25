@@ -1,0 +1,24 @@
+﻿@model IdService.App.ViewModels.Errors.StatusCodeModel
+@section Head {
+    <style type="text/css">
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+}
+<div id="status-container">
+    <div class="status-container">
+        <div class="status-container-caption">
+            <h1>@Model.Code</h1>
+        </div>
+        <h2>@Model.Message</h2>
+        <p>@Model.Description</p>
+        <a href="~/">Back To Homepage</a>
+    </div>
+</div>
