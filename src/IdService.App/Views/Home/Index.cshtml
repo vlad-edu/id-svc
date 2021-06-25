@@ -1,21 +1,126 @@
-﻿<header>
+﻿@section Head {
     <style>
+        label.logo {
+            color: white;
+            font-size: 35px;
+            line-height: 80px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: montserrat;
+            min-height: 100%;
+        }
+
+        nav {
+            background: whitesmoke;
+            height: 80px;
+            width: 100%;
+        }
+
+        label.logo {
+            color: grey;
+            font-size: 35px;
+            line-height: 80px;
+            padding: 0 100px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            float: right;
+            margin-right: 20px;
+        }
+
+            nav ul li {
+                display: inline-block;
+                line-height: 80px;
+                margin: 0 5px;
+            }
+
+                nav ul li a {
+                    color: grey;
+                    font-size: 17px;
+                    padding: 7px 13px;
+                    text-transform: uppercase;
+                }
+
         #intro {
-            background-image: url("/img/home.jpg");
+            background-image: url(img/home.jpg);
             height: 100vh;
         }
+
+        body {
+            background: #b0e0e6
+        }
+
+        footer {
+            clear: both;
+            position: relative;
+        }
     </style>
+}
 
-    <div id="intro">
-        <nav class="navbar-light bg-light">
-            <div class="container-fluid">
+<header>
+    <nav>
+        <label class="logo">Our Website</label>
 
-
-            </div>
-        </nav>
-    </div>
+        <ul>
+            <li><a class="active" href="#">About us</a></li>
+            <li><a class="active" href="https://localhost:44384/account/register">Sign up</a></li>
+            <li><a class="active" href="https://localhost:44384/Account/Login?ReturnUrl=%2F">Log in</a></li>
+        </ul>
+    </nav>
 </header>
 
-<footer>
+<main>
+    <div class="img-fluid">
 
-</footer>
+
+        <form class="form-center">
+            <div class="text-center">
+                <img class="mb-4" src="~/img/logo.svg" alt="" width="270" height="270">
+                <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
+                <label class="display-6">Make sure you are calm to look at it</label>
+            </div>
+        </form>
+
+    </div>
+    <ul>
+
+        <li>
+            <label class="logo">Responsibility</label>
+            <label class="logo">Reliability</label>
+            <label class="logo">Quality</label>
+            <label class="logo">Features</label>
+            <label class="logo">Development</label>
+        </li>
+    </ul>
+</main>
+
+<footer class="bg-light text-lg-start">
+    <form class="bottom-0">
+        <div class="container">
+            <div class="py-4 text-center">
+                <a role="button" class="btn btn-primary btn-lg m-2"
+                   href="#" rel="nofollow" target="_blank">
+                    Help
+                </a>
+                <a role="button" class="btn btn-primary btn-lg m-2" href="#" target="_blank">
+                    FAQ
+                </a>
+            </div>
+        </div>
+        <hr class="m-0" />
+
+        <div class="text-center p-3" style="background-color: whitesmoke">
+            © 2021 All rights reserved
+        </div>
+    </form>
+</footer>   
