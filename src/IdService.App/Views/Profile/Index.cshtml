@@ -1,0 +1,48 @@
+﻿@model IdService.App.ViewModels.Profile.ProfileModel
+@{ ViewData["Title"] = "Profile Page"; }
+@section Head {
+    @await Html.PartialAsync("Partial/_FlexBody")
+}
+
+<div class="container">
+    <main>
+        <form class="form-center" method="post">
+            <div class="px-3 py-5 border-sm rounded">
+                <div class="text-center">
+                    <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
+                </div>
+
+                <div class="mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label asp-validation-for="Username"></label>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-validation-for="Email"></label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="NewPassword"></label>
+                    <input class="form-control" asp-for="NewPassword" />
+                    <span asp-validation-for="NewPassword"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="ConfirmPassword"></label>
+                    <input class="form-control" asp-for="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center">
+                    <recaptcha />
+                </div>
+
+                <button type="submit" class="w-100 btn btn-primary">
+                    Apply new password
+                </button>
+            </div>
+        </form>
+    </main>
+</div>

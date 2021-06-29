@@ -17,7 +17,7 @@ namespace IdService.App.Controllers
         {
             var model = new LoginModel
             {
-                ReturnUrl = "http://google.com/",
+                ReturnUrl = "~/",
             };
             return View(model);
         }
