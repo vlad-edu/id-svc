@@ -1,5 +1,5 @@
 ﻿@model IdService.App.ViewModels.Profile.ProfileModel
-@{ ViewData["Title"] = "Profile Page"; }
+@{ ViewData["Title"] = "User Page"; }
 @section Head {
     @await Html.PartialAsync("Partial/_FlexBody")
 }
@@ -16,32 +16,31 @@
                 <div class="mb-3" asp-validation-summary="ModelOnly"></div>
 
                 <div class="mb-3">
-                    <label asp-validation-for="Username"></label>
+                    <label class="form-label" asp-for="FirstName"></label>
+                    <input readonly class="form-control" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label asp-validation-for="Email"></label>
+                    <label class="form-label" asp-for="LastName"></label>
+                    <input readonly class="form-control" asp-for="LastName" />
+                    <span asp-validation-for="LastName"></span>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" asp-for="NewPassword"></label>
-                    <input class="form-control" asp-for="NewPassword" />
-                    <span asp-validation-for="NewPassword"></span>
+                    <label class="form-label" asp-for="Email"></label>
+                    <input readonly class="form-control" asp-for="Email" />
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" asp-for="ConfirmPassword"></label>
-                    <input class="form-control" asp-for="ConfirmPassword" />
-                    <span asp-validation-for="ConfirmPassword"></span>
+                    <label class="form-label" asp-for="Phone"></label>
+                    <input readonly class="form-control" asp-for="Phone" />
                 </div>
 
-                <div class="mb-3 d-flex justify-content-center">
-                    <recaptcha />
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Status"></label>
+                    <input readonly class="form-control" asp-for="Status" />
                 </div>
-
-                <button type="submit" class="w-100 btn btn-primary">
-                    Apply new password
-                </button>
             </div>
         </form>
     </main>
