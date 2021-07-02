@@ -6,7 +6,7 @@
 
 <div class="container">
     <main>
-        <form class="form-center" method="post">
+        <form class="form-center" method="post" asp-action="Index">
             <div class="px-3 py-5 border-sm rounded">
                 <div class="text-center">
                     <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
@@ -17,13 +17,13 @@
 
                 <div class="mb-3">
                     <label class="form-label" asp-for="FirstName"></label>
-                    <input readonly class="form-control" asp-for="FirstName" />
+                    <input class="form-control" asp-for="FirstName" />
                     <span asp-validation-for="FirstName"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" asp-for="LastName"></label>
-                    <input readonly class="form-control" asp-for="LastName" />
+                    <input class="form-control" asp-for="LastName" />
                     <span asp-validation-for="LastName"></span>
                 </div>
 
@@ -41,6 +41,10 @@
                     <label class="form-label" asp-for="Status"></label>
                     <input readonly class="form-control" asp-for="Status" />
                 </div>
+                
+                <button type="submit" class="w-100 btn btn-primary">
+                    Save changes
+                </button>
             </div>
         </form>
     </main>
