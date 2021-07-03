@@ -1,6 +1,7 @@
 ﻿using System;
 using IdService.Data;
 using IdService.Data.Model.Identity;
+using IdService.Services.Email;
 using IdService.Services.Identity;
 using IdService.Services.Providers;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +47,13 @@ namespace IdService.Services.Extensions
             {
                 configuration.Bind(nameof(EmailConfirmationTokenProviderOptions), opt);
             });
+
+            return services;
+        }
+
+        public static IServiceCollection AddConfiguredServices(this IServiceCollection services)
+        {
+            services.AddSingleton<ISmtpSender, SmtpSender>();
 
             return services;
         }

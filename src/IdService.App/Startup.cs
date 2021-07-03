@@ -33,6 +33,8 @@ namespace IdService.App
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions(_configuration);
+
             services.AddConfiguredDbContext(_configuration);
             services.AddConfiguredIdentity(_configuration);
 
