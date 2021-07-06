@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
+using System.Threading.Tasks;
+using IdService.App.ViewModels.Account;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdService.App.Controllers
 {
@@ -9,20 +12,28 @@ namespace IdService.App.Controllers
     public partial class AccountController
     {
         [HttpGet]
+        [Authorize]
         public IActionResult ChangePassword()
         {
-            return View();
+            return View(new ChangePasswordModel());
         }
 
         [HttpPost]
-        public IActionResult ConfirmPassword()
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromForm] ChangePasswordModel model)
         {
-            return Model();
-        }
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!ModelState.IsValid) return View(model);
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Forbid();
+            var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (result.Succeeded) return RedirectToAction("Index", "Profile");
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Code);
+            }
 
-        private static IActionResult Model()
-        {
-            throw new NotImplementedException();
+            return View(model);
         }
     }
 }
