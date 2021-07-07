@@ -13,7 +13,7 @@ namespace IdService.App.Controllers
     [AllowAnonymous]
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public sealed class ErrorsController : Controller
+    public sealed class ErrorsController : AppController
     {
         private static readonly IDictionary<int, StatusCodeModel> KnownCodes = new Dictionary<int, StatusCodeModel>
         {
@@ -63,7 +63,7 @@ namespace IdService.App.Controllers
             _logger = logger;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         public IActionResult Index([FromQuery] int? status)
         {
             return status is < 500

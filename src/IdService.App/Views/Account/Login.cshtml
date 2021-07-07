@@ -22,7 +22,7 @@
 
                 <div class="mb-3">
                     <label class="form-label float-start" asp-for="Password"></label>
-                    <a href="https://localhost:44384/Account/ForgotPassword" class="float-end text-decoration-none">Forgot password?</a>
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="float-end text-decoration-none">Forgot password?</a>
                     <input class="form-control" asp-for="Password" />
                     <span asp-validation-for="Password"></span>
                 </div>

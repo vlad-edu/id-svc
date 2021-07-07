@@ -1,0 +1,36 @@
+﻿@using IdService.App.ViewModels.Message
+@model IdService.App.ViewModels.Message.MessageModel
+@{
+    ViewData["Title"] = Model.Caption;
+    var className = Model.Level switch
+    {
+        MessageLevel.Info => "alert-primary",
+        MessageLevel.Success => "alert-success",
+        MessageLevel.Warning => "alert-warning",
+        MessageLevel.Danger => "alert-danger",
+        _ => throw new ArgumentOutOfRangeException(nameof(Model.Level))};
+}
+@section Head {
+    @await Html.PartialAsync("Partial/_FlexBody")
+}
+<div class="container">
+    <main>
+        <div class="alert @className d-flex align-items-center" role="alert">
+            <div>
+                <h4 class="alert-heading">@Model.Caption</h4>
+                <p>@Model.Message</p>
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <hr>
+                    <p class="mb-0">@Model.Description</p>
+                }
+            </div>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.ActionName))
+        {
+            <div class="d-grid col-4 mx-auto">
+                <a class="btn btn-primary" href="@Model.ActionUrl" role="button">@Model.ActionName</a>
+            </div>
+        }
+    </main>
+</div>

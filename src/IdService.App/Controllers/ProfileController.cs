@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IdService.App.Controllers
 {
+    /// <summary>
+    /// View and manipulation profile.
+    /// </summary>
     [AutoValidateAntiforgeryToken]
-    public sealed class ProfileController : Controller
+    public sealed partial class ProfileController : AppController
     {
         private readonly UserManager<ApplicationUser> _userManager;
 

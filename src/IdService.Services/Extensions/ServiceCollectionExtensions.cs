@@ -55,6 +55,8 @@ namespace IdService.Services.Extensions
         {
             services.AddSingleton<ISmtpSender, SmtpSender>();
 
+            services.AddTransient<IEmailService, EmailService>();
+
             return services;
         }
     }

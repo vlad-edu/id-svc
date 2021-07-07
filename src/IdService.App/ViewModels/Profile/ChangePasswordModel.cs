@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using IdService.Core.Constants;
 
-namespace IdService.App.ViewModels.Account
+namespace IdService.App.ViewModels.Profile
 {
     public sealed class ChangePasswordModel
     {

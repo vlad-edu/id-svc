@@ -37,6 +37,7 @@ namespace IdService.App
 
             services.AddConfiguredDbContext(_configuration);
             services.AddConfiguredIdentity(_configuration);
+            services.AddConfiguredServices();
 
             if (_env.IsDevelopment())
             {

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
-using IdService.App.ViewModels.Account;
+using IdService.App.ViewModels.Profile;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdService.App.Controllers
 {
     /// <summary>
-    /// SignIn, SignOut.
+    /// Change password.
     /// </summary>
-    public partial class AccountController
+    public partial class ProfileController
     {
         [HttpGet]
         [Authorize]
