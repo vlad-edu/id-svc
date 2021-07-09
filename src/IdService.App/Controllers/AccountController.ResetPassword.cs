@@ -28,6 +28,8 @@ namespace IdService.App.Controllers
         [ValidateReCaptcha]
         public async Task<IActionResult> ForgotPassword([FromForm] ForgotPasswordModel model)
         {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+
             if (_signInManager.IsSignedIn(User)) await _signInManager.SignOutAsync();
 
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -43,17 +45,25 @@ namespace IdService.App.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword([FromRoute] Guid id, [FromQuery] string token)
+        public IActionResult ResetPassword([FromRoute] Guid id, [FromQuery] string token)
         {
             if (id == Guid.Empty) return NotFound();
 
-            throw new NotImplementedException();
+            var model = new ResetPasswordModel
+            {
+                Id = id,
+                Token = token,
+            };
+            return View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword()
+        public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordModel model)
         {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!ModelState.IsValid) return View(model);
+
             throw new NotImplementedException();
         }
 
