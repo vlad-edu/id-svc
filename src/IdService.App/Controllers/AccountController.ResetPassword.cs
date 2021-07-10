@@ -45,9 +45,10 @@ namespace IdService.App.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword([FromRoute] Guid id, [FromQuery] string token)
+        public IActionResult ResetPassword([FromRoute] Guid id, [FromQuery] string? token)
         {
             if (id == Guid.Empty) return NotFound();
+            if (token == null) return NotFound();
 
             var model = new ResetPasswordModel
             {
@@ -62,9 +63,26 @@ namespace IdService.App.Controllers
         public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
+            if (model.Id == Guid.Empty) return NotFound();
+            if (model.Token == null) return NotFound();
             if (!ModelState.IsValid) return View(model);
 
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(model.Id.ToString());
+            if (user == null) return NotFound();
+
+            var result = await _userManager.ResetPasswordAsync(user, model.Token.Base64Decode(), model.NewPassword);
+            if (!result.Succeeded)
+            {
+                _logger.LogWarning("Reset password wasn't completed successfully. {errors}", result.Errors);
+                return NotFound();
+            }
+
+            return ShowAlert(
+                "Reset password was completed successfully.",
+                MessageLevel.Success,
+                "Well done",
+                actionName: "OK",
+                actionUrl: Url.Action("Index", "Profile"));
         }
 
         private IActionResult ForgotPasswordMessage()
