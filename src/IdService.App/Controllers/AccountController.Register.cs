@@ -45,5 +45,15 @@ namespace IdService.App.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail([FromRoute] Guid id, [FromQuery] string? token)
+        {
+            if (id == Guid.Empty) return NotFound();
+            if (token == null) return NotFound();
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
 
   entry: {
-    'js/app': './src/app.ts',
+    'js/main': './src/ts/main.ts',
     'css/site': './src/scss/site.scss'
   },
     

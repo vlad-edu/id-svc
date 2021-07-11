@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devtool: 'source-map',
 
   entry: {
-    'js/app.min': './src/app.ts',
+    'js/main.min': './src/ts/main.ts',
     'css/site.min': './src/scss/site.scss'
   },
 

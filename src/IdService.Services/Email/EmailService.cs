@@ -14,6 +14,18 @@ namespace IdService.Services.Email
             _sender = sender;
         }
 
+        public async Task SendConfirmEmailAsync(Uri link, string email, string? user)
+        {
+            var message = new MimeMessage
+            {
+                Subject = $"Confirm email to {link.Host}",
+                Body = new TextPart(TextFormat.Plain) { Text = link.ToString() },
+            };
+
+            message.To.Add(new MailboxAddress(user ?? "User", email));
+            await _sender.SendMessageAsync(message);
+        }
+
         public async Task SendResetPasswordLinkAsync(Uri link, string email, string? user)
         {
             var message = new MimeMessage
