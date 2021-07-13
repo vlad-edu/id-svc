@@ -1,0 +1,35 @@
+﻿@model IdService.App.ViewModels.Account.LoginWith2FaModel
+@{ ViewData["Title"] = "Login with 2Fa"; }
+@section Head {
+    @await Html.PartialAsync("Partial/_FlexBody")
+}
+<div class="container">
+    <main>
+        <form class="form-center" method="post" asp-action="Login">
+            <div class="px-3 py-5 border-sm rounded">
+                <div class="text-center">
+                    <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
+                </div>
+
+                <div class="mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <div class="mb-3">
+                    <label class="form-label float-start" asp-for="Code"></label>
+                    <input class="form-control" asp-for="Code" />
+                    <span asp-validation-for="Code"></span>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" asp-for="RememberMachine">
+                    <label class="form-check-label" asp-for="RememberMachine"></label>
+                </div>
+
+                <button type="submit" class="w-100 btn btn-primary">
+                   Submit
+                </button>
+            </div>
+            <input type="hidden" asp-for="ReturnUrl" />
+        </form>
+    </main>
+</div>
