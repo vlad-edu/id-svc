@@ -1,0 +1,25 @@
+﻿@model IdService.App.ViewModels.Profile.Manage2FaModel
+@{ ViewData["Title"] = "Manage 2Fa"; }
+@section Head {
+    @await Html.PartialAsync("Partial/_FlexBody")
+}
+<div class="container">
+    <main>
+        <form class="form-center" method="post" asp-action="Manage2Fa">
+            <div class="px-3 py-5 border-sm rounded">
+                <div class="text-center">
+                    <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
+                </div>
+
+                <div class="mb-3" asp-validation-summary="ModelOnly"></div>
+
+                <button type="submit" class="w-100 btn btn-primary">
+                    Submit
+                </button>
+
+            </div>
+            <input type="hidden" asp-for="ReturnUrl" />
+        </form>
+    </main>
+</div>
