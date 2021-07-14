@@ -50,5 +50,24 @@ namespace IdService.App.Controllers
             await _userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Manage2Fa()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var model = new Manage2FaModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Manage2Fa([FromForm] Manage2FaModel model)
+        {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (!ModelState.IsValid) return View(model);
+
+            throw new NotImplementedException();
+        }
     }
 }
