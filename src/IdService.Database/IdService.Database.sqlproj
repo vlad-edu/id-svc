@@ -85,6 +85,8 @@
     <Build Include="Tables\msi.UserTokens.sql" />
     <Build Include="Tables\dbo.__EFMigrationsHistory.sql" />
     <Build Include="Security\Schemas\msi.sql" />
+    <Build Include="Tables\dpk.DataProtectionKeys.sql" />
+    <Build Include="Security\Schemas\dpk.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />

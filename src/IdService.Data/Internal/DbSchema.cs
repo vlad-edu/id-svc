@@ -5,5 +5,6 @@
         public const string Dbo = "dbo";
         public const string Identity = "msi";
         public const string Openid = "oid";
+        public const string DataProtection = "dpk";
     }
 }

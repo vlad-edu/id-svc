@@ -1,5 +1,8 @@
 ﻿@model IdService.App.ViewModels.Profile.ProfileModel
-@{ ViewData["Title"] = "User Page"; }
+@{
+    ViewData["Title"] = "User Page";
+    var isTwoFactorEnabled = (bool)ViewData["IsTwoFactorEnabled"];
+}
 @section Head {
     @await Html.PartialAsync("Partial/_FlexBody")
 }
@@ -41,12 +44,19 @@
                     <label class="form-label" asp-for="Status"></label>
                     <input readonly class="form-control" asp-for="Status" />
                 </div>
-                
+
                 <button type="submit" class="w-100 btn btn-primary">
                     Save changes
                 </button>
-                
-                <a class="btn btn-primary w-100" asp-action="Manage2Fa" role="button">Manage2Fa</a>
+
+                @if (isTwoFactorEnabled)
+                {
+                    <a class="btn btn-primary w-100" asp-action="Disable2Fa" role="button">Disable Two Factor</a>
+                }
+                else
+                {
+                    <a class="btn btn-primary w-100" asp-action="SetupAuthenticator" role="button">Enable Two Factor</a>
+                }
                 <a class="btn btn-primary w-100" asp-controller="Home" asp-action="Index" role="button">Home page</a>
 
             </div>

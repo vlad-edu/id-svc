@@ -1,4 +1,5 @@
-﻿using IdService.App.Infrastructure.Extensions;
+﻿using System;
+using IdService.App.Infrastructure.Extensions;
 using IdService.App.ViewModels.Message;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,14 +13,14 @@ namespace IdService.App.Controllers
             string? caption = null,
             string? description = null,
             string? actionName = null,
-            string? actionUrl = null)
+            Uri? actionUri = null)
         {
             var model = new MessageModel { Message = message };
             if (level.HasValue) model.Level = level.Value;
             if (caption != null) model.Caption = caption;
             if (description != null) model.Description = description;
             if (actionName != null) model.ActionName = actionName;
-            if (actionUrl != null) model.ActionUrl = actionUrl;
+            if (actionUri != null) model.ActionUrl = actionUri.ToString();
 
             TempData.Put(MessageModel.TempDataKey, model);
             return RedirectToAction("Message", "Message");

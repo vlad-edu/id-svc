@@ -38,7 +38,7 @@ namespace IdService.App.Infrastructure.Extensions
                 context.Set(
                     "Headers",
                     httpContext.Request.Headers
-                        .Where(h => h.Key.StartsWith("X-", StringComparison.OrdinalIgnoreCase))
+                        .Where(h => h.Key.StartsWith("X-Forwarded-", StringComparison.OrdinalIgnoreCase))
                         .ToDictionary(k => k.Key, v => v.Value.ToString()),
                     true);
 

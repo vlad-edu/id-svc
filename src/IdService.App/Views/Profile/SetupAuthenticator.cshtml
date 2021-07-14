@@ -1,11 +1,11 @@
-﻿@model IdService.App.ViewModels.Profile.Manage2FaModel
+﻿@model IdService.App.ViewModels.Profile.SetupAuthenticatorModel
 @{ ViewData["Title"] = "Manage 2Fa"; }
 @section Head {
     @await Html.PartialAsync("Partial/_FlexBody")
 }
 <div class="container">
     <main>
-        <form class="form-center" method="post" asp-action="Manage2Fa">
+        <form class="form-center" method="post" asp-action="SetupAuthenticator">
             <div class="px-3 py-5 border-sm rounded">
                 <div class="text-center">
                     <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
@@ -14,12 +14,15 @@
 
                 <div class="mb-3" asp-validation-summary="ModelOnly"></div>
 
+                <img src="@Model.QrCodeSource" alt="Embedded QR Code" />
+                <kbd>@Model.SharedKey</kbd>
+                <pre><code>@Model.RecoveryCodes</code></pre>
+
                 <button type="submit" class="w-100 btn btn-primary">
                     Submit
                 </button>
 
             </div>
-            <input type="hidden" asp-for="ReturnUrl" />
         </form>
     </main>
 </div>

@@ -35,8 +35,9 @@ namespace IdService.App
         {
             services.AddOptions(_configuration);
 
-            services.AddConfiguredDbContext(_configuration);
+            services.AddConfiguredDbContext(_configuration, _env);
             services.AddConfiguredIdentity(_configuration);
+            services.AddConfiguredQuartz();
             services.AddConfiguredServices();
 
             if (_env.IsDevelopment())

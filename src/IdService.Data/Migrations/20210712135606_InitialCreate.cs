@@ -8,7 +8,25 @@ namespace IdService.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
+                name: "dpk");
+
+            migrationBuilder.EnsureSchema(
                 name: "msi");
+
+            migrationBuilder.CreateTable(
+                name: "DataProtectionKeys",
+                schema: "dpk",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FriendlyName = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
+                    Xml = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DataProtectionKeys", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Roles",
@@ -230,6 +248,10 @@ namespace IdService.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DataProtectionKeys",
+                schema: "dpk");
+
             migrationBuilder.DropTable(
                 name: "RoleClaims",
                 schema: "msi");

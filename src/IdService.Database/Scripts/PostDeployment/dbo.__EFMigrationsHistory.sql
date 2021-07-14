@@ -2,4 +2,4 @@
 
 INSERT INTO [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion])
 VALUES
-	(N'20210623154122_InitialCreate', N'5.0.7');
+	(N'20210712135606_InitialCreate', N'5.0.7');
