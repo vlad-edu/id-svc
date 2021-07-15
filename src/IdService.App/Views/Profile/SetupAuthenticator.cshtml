@@ -14,7 +14,7 @@
 
                 <div class="mb-3" asp-validation-summary="ModelOnly"></div>
 
-                <img src="@Model.QrCodeSource" alt="Embedded QR Code" />
+                <img class="form-center" src="@Model.QrCodeSource" alt="Embedded QR Code" />
                 <kbd>@Model.SharedKey</kbd>
                 <pre><code>@Model.RecoveryCodes</code></pre>
 
