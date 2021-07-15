@@ -86,7 +86,7 @@ namespace IdService.App.Controllers
                 MessageLevel.Success,
                 "Well done",
                 actionName: "OK",
-                actionUri: new Uri(Url.Action("Index", "Profile")));
+                actionUri: new Uri(Url.ActionLink("Index", "Profile")));
         }
 
         private IActionResult ForgotPasswordMessage()
@@ -96,7 +96,7 @@ namespace IdService.App.Controllers
                 MessageLevel.Info,
                 "Check mailbox",
                 actionName: "OK",
-                actionUri: new Uri(Url.Action("Index", "Home")));
+                actionUri: new Uri(Url.ActionLink("Index", "Home")));
         }
     }
 }
