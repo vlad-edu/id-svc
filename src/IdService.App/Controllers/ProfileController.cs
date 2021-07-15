@@ -30,7 +30,7 @@ namespace IdService.App.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
-            ViewData["IsTwoFactorEnabled"] = _userManager.GetTwoFactorEnabledAsync(user);
+            ViewData["IsTwoFactorEnabled"] = await _userManager.GetTwoFactorEnabledAsync(user);
             var model = new ProfileModel
             {
                 FirstName = user.FirstName,
@@ -73,7 +73,7 @@ namespace IdService.App.Controllers
             var email = await _userManager.GetEmailAsync(user);
             var model = new SetupAuthenticatorModel
             {
-                QrCodeSource = QrCodeGenerator.GetTotpBase64Source(Request.Host.Host, unformattedKey, $"{Request.Host.Host}:{email}"),
+                QrCodeSource = QrCodeGenerator.GetTotpBase64Source(Request.Host.Host, unformattedKey, email),
                 SharedKey = FormatKey(unformattedKey),
                 RecoveryCodes = FormatCodes((await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10)).ToList(), 2),
             };
