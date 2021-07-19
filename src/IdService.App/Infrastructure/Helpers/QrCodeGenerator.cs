@@ -21,7 +21,7 @@ namespace IdService.App.Infrastructure.Helpers
             using var qrGenerator = new QRCodeGenerator();
             var qrData = qrGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
             using var qrCode = new Base64QRCode(qrData);
-            var qrCodeBase64Image = qrCode.GetGraphic(5, Color.Black, Color.White, true, ImageType);
+            var qrCodeBase64Image = qrCode.GetGraphic(3, Color.Black, Color.White, true, ImageType);
 
 #pragma warning disable CA1308 // Normalize strings to uppercase
             return string.Format(CultureInfo.InvariantCulture, HtmlDataFormat, ImageType.ToString().ToLowerInvariant(), qrCodeBase64Image);

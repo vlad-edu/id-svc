@@ -75,7 +75,7 @@ namespace IdService.App.Controllers
             {
                 QrCodeSource = QrCodeGenerator.GetTotpBase64Source(Request.Host.Host, unformattedKey, email),
                 SharedKey = FormatKey(unformattedKey),
-                RecoveryCodes = FormatCodes((await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10)).ToList(), 2),
+                RecoveryCodes = FormatCodes((await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 8)).ToList(), 4),
             };
 
             return View(model);

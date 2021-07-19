@@ -13,11 +13,11 @@ namespace IdService.App.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login()
+        public IActionResult Login([FromQuery] string? returnUrl)
         {
             var model = new LoginModel
             {
-                ReturnUrl = "~/",
+                ReturnUrl = returnUrl,
             };
             return View(model);
         }
@@ -34,10 +34,10 @@ namespace IdService.App.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, true);
-            if (result.RequiresTwoFactor) return RedirectToAction("LoginWith2Fa");
+            if (result.RequiresTwoFactor) return RedirectToAction("LoginWith2Fa", new { returnUrl = model.ReturnUrl });
             if (result.Succeeded)
             {
-                return Redirect(model.ReturnUrl ?? "/");
+                return Redirect(model.ReturnUrl ?? "~/");
             }
 
             ModelState.TryAddModelError(string.Empty, result.ToString());
@@ -46,14 +46,14 @@ namespace IdService.App.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> LoginWith2Fa()
+        public async Task<IActionResult> LoginWith2Fa([FromQuery] string? returnUrl)
         {
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null) return NotFound();
 
             var model = new LoginWith2FaModel
             {
-                ReturnUrl = "~/",
+                ReturnUrl = returnUrl,
             };
             return View(model);
         }
@@ -69,13 +69,12 @@ namespace IdService.App.Controllers
             if (!ModelState.IsValid) return View(model);
 
             var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(model.Code, true, model.RememberMachine);
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "The code is incorrect");
-                return View(model);
-            }
 
-            return RedirectToAction("Index", "Profile");
+            if (result.Succeeded) return Redirect(model.ReturnUrl ?? "~/");
+
+            ModelState.AddModelError(string.Empty, "The code is incorrect");
+            return View(model);
+
         }
     }
 }

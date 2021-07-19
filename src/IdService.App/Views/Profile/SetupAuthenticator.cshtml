@@ -11,13 +11,47 @@
                     <img class="mb-4" src="~/img/logo.svg" alt="" width="72" height="72">
                     <h1 class="h3 mb-3 fw-normal">@ViewData["Title"]</h1>
                 </div>
-
                 <div class="mb-3" asp-validation-summary="ModelOnly"></div>
-                <label class="form-label h6 mb-3">Scan the QR code:</label>
-                <img class="form-center img-thumbnail" src="@Model.QrCodeSource" alt="Embedded QR Code" />
-                <label style="margin-top: 5px" class="form-label h6 mb-3">Or use this code:</label>
-                <kbd style="margin-top: 5px" class="mb-3">@Model.SharedKey</kbd>
-                <pre><code class="visually-hidden form-center">@Model.RecoveryCodes</code></pre>
+                
+                <div class="mb-3">
+                    <p>To use an authenticator app go through the following steps:</p>
+                    <ol>
+                        <li>
+                            <p>
+                                Download a two-factor authenticator app like Microsoft Authenticator for
+                                <a href="https://go.microsoft.com/fwlink/?Linkid=825072" target="_blank">Android</a> and
+                                <a href="https://go.microsoft.com/fwlink/?Linkid=825073" target="_blank">iOS</a> or
+                                Google Authenticator for
+                                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en" target="_blank">Android</a> and
+                                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="_blank">iOS</a>.
+                            </p>
+                        </li>
+                        <li>
+                            <p>Scan the QR Code or enter this key<br><kbd>@Model.SharedKey</kbd><br>into your two factor authenticator app. Spaces and casing do not matter.</p>
+                            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423" target="_blank">enable QR code generation</a>.</div>
+                            <div class="text-center">
+                                <img width="159" height="159" class="img-thumbnail" src="@Model.QrCodeSource" alt="Embedded QR Code" />
+                            </div>
+                        </li>
+                        <li>
+                            <p>
+                                Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
+                                with a unique code. Enter the code in the confirmation box below.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <strong>Put these codes in a safe place.</strong>
+                            </p>
+                            <p>
+                                If you lose your device and don't have the recovery codes you will lose access to your account.
+                            </p>
+                            <div class="bg-light">
+                                <pre><code>@Model.RecoveryCodes</code></pre>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Code"></label>
                     <input class="form-control" asp-for="Code" />
@@ -27,7 +61,6 @@
                 <button type="submit" class="w-100 btn btn-primary">
                     Submit
                 </button>
-
             </div>
         </form>
     </main>
