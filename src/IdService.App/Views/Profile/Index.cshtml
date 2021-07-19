@@ -45,19 +45,19 @@
                     <input readonly class="form-control" asp-for="Status" />
                 </div>
 
-                <button type="submit" class="w-100 btn btn-primary">
+                <button style="margin-top: 10px" type="submit" class="w-100 btn btn-primary">
                     Save changes
                 </button>
 
                 @if (isTwoFactorEnabled)
                 {
-                    <a class="btn btn-primary w-100" asp-action="Disable2Fa" role="button">Disable Two Factor</a>
+                    <a style="margin-top: 10px" class="btn btn-link w-100" asp-action="Disable2Fa" role="button">Disable Two Factor</a>
                 }
                 else
                 {
-                    <a class="btn btn-primary w-100" asp-action="SetupAuthenticator" role="button">Enable Two Factor</a>
+                    <a style="margin-top: 10px" class="btn btn-link w-100" asp-action="SetupAuthenticator" role="button">Enable Two Factor</a>
                 }
-                <a class="btn btn-primary w-100" asp-controller="Home" asp-action="Index" role="button">Home page</a>
+                <a style="margin-top: 10px" class="btn btn-link w-100" asp-controller="Home" asp-action="Index" role="button">Home page</a>
 
             </div>
         </form>
