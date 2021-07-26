@@ -16,10 +16,14 @@ namespace IdService.Services.Email
 
         public async Task SendConfirmEmailAsync(Uri link, string email, string? user)
         {
+
             var message = new MimeMessage
             {
                 Subject = $"Confirm email to {link.Host}",
-                Body = new TextPart(TextFormat.Plain) { Text = link.ToString() },
+                Body = new TextPart(TextFormat.Html)
+                {
+                    Text = $"<p>Link for your registration. Go throw the link and complete the registration process.</p> <ul>  <li>  <a href={link}>Complete the registration</a> </li> </ul>",
+                },
             };
 
             message.To.Add(new MailboxAddress(user ?? "User", email));
