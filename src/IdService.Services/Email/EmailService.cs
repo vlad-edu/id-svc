@@ -34,8 +34,11 @@ namespace IdService.Services.Email
         {
             var message = new MimeMessage
             {
-                Subject = $"Reset password to {link.Host}",
-                Body = new TextPart(TextFormat.Plain) { Text = link.ToString() },
+                Subject = $"Confirm email to {link.Host}",
+                Body = new TextPart(TextFormat.Html)
+                {
+                    Text = $"<p>Link fo resetting password. Go throw the link and complete the resetting password process.</p> <ul>  <li>  <a href={link}>Complete the resetting password</a> </li> </ul>",
+                },
             };
 
             message.To.Add(new MailboxAddress(user ?? "User", email));
